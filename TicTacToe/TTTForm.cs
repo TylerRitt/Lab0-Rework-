@@ -58,7 +58,7 @@ namespace TicTacToe
         {
             Label square = GetSquare(row, 0);
             string symbol = square.Text;
-            for (int col = 1; col < SIZE; col++)
+            for (int col = 1; col < SIZE; col++) // in all of these methods, remember not to hardcode in 5!!
             {
                 square = GetSquare(row, col);
                 if (symbol == EMPTY || square.Text != symbol)
@@ -86,7 +86,7 @@ namespace TicTacToe
             for (int row = 1; row < SIZE; row++)
             {
                 square = GetSquare(row, col);
-                if (symbol == EMPTY || square.Text != symbol)
+                if (symbol == EMPTY || square.Text != symbol) // if the label square is EMPTY("") || (OR) label squares text property does not equal (!=) itself
                     return false;
             }
             return true;
@@ -278,10 +278,13 @@ namespace TicTacToe
             switch (winningDimension)
             {
                 case ROW:
-
+                    HighlightRow(winningValue);
+                    resultLabel.Text = (player + " wins!");
+                    
                     break;
                 case COLUMN:
-
+                    HighlightColumn(winningValue);
+                    resultLabel.Text = (player + " wins!");
                     break;
                 case DIAGONAL:
                     HighlightDiagonal(winningValue);
@@ -313,8 +316,8 @@ namespace TicTacToe
             Random random = new Random();
             while (yes == true)
             {
-                col = random.Next(0, 4);
-                row = random.Next(0, 4);
+                col = random.Next(0, 5);
+                row = random.Next(0, 5);
                 if (GetSquare(row,col).Enabled == true)
                 {
                     GetSquare(row, col).Enabled = false;
